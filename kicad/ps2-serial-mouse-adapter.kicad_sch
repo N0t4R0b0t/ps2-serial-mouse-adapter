@@ -2377,6 +2377,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:VBUS"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "VBUS"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"VBUS\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "VBUS_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "VBUS_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "ps2-serial-mouse-adapter-rescue:CP-Device"
 			(pin_numbers
 				(hide yes)
@@ -4077,10 +4216,10 @@
 		)
 	)
 	(junction
-		(at 104.14 82.55)
+		(at 104.14 38.1)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "0af0df4f-46ae-46bd-9f82-aa0ef8bdb499")
+		(uuid "2191dc94-7264-4200-8c31-65208c751805")
 	)
 	(junction
 		(at 100.33 60.96)
@@ -4089,40 +4228,16 @@
 		(uuid "25b8f46e-9d1f-4140-a117-14f8aae05e5e")
 	)
 	(junction
-		(at 104.14 105.41)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2a3eadc1-f628-480b-98fc-6557884b7bec")
-	)
-	(junction
-		(at 104.14 97.79)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "31f46260-d409-4082-a0e5-b5c8d89e07ce")
-	)
-	(junction
 		(at 74.93 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "32a6d913-e7f3-4fdb-a00b-fbc75a90801a")
 	)
 	(junction
-		(at 104.14 80.01)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3c1e0aae-466e-40a3-af0c-fbb55f05cdee")
-	)
-	(junction
 		(at 208.28 116.84)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4eb14c3d-419c-4fde-97ca-621f48272358")
-	)
-	(junction
-		(at 104.14 90.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "613391e9-b6f4-457e-a99c-692bd8cfdc24")
 	)
 	(junction
 		(at 74.93 53.34)
@@ -4137,70 +4252,10 @@
 		(uuid "67541c02-cb28-4c70-a831-03b29054fbfb")
 	)
 	(junction
-		(at 104.14 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6cb15964-a83a-497b-ba99-69c7c320269f")
-	)
-	(junction
-		(at 104.14 85.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "72f4833c-da7b-45e3-abc7-7495fd427bd2")
-	)
-	(junction
-		(at 104.14 87.63)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a27b5343-59da-4c37-b838-5898e2d45c60")
-	)
-	(junction
 		(at 121.92 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a9caf7cf-4dd7-46c6-b2d6-8116f8143e52")
-	)
-	(junction
-		(at 154.94 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b2c3d4e5-0002-0001-0001-000000000001")
-	)
-	(junction
-		(at 165.1 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b2c3d4e5-0002-0001-0001-000000000002")
-	)
-	(junction
-		(at 128.27 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b978b395-87c6-48d2-b9d8-a5a40127dce6")
-	)
-	(junction
-		(at 104.14 102.87)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bbc953dd-7120-4742-9962-62a5261d6b31")
-	)
-	(junction
-		(at 104.14 60.96)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c1c2d3e4-0002-0001-0001-000000000001")
-	)
-	(junction
-		(at 104.14 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "db2bd42e-9c2e-487d-aea3-117075943c55")
-	)
-	(junction
-		(at 104.14 92.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dc5fc844-df1c-4a8a-9c07-e11d986cdbdd")
 	)
 	(no_connect
 		(at 81.28 107.95)
@@ -4324,16 +4379,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 90.17) (xy 104.14 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "05a35711-f166-46a4-8000-95dc6ac75ec9")
-	)
-	(wire
-		(pts
 			(xy 97.79 60.96) (xy 100.33 60.96)
 		)
 		(stroke
@@ -4351,26 +4396,6 @@
 			(type default)
 		)
 		(uuid "200f4132-b397-4ea7-b4b3-866ee1e7c310")
-	)
-	(wire
-		(pts
-			(xy 104.14 102.87) (xy 104.14 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "22b86ae5-dae1-430c-ab39-1270e5df96df")
-	)
-	(wire
-		(pts
-			(xy 104.14 95.25) (xy 104.14 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "26603dfa-a3e5-4592-b61f-fd9047fd19a1")
 	)
 	(wire
 		(pts
@@ -4394,16 +4419,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 85.09) (xy 104.14 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3b6b81e6-84af-45d3-99a1-fb87cce018e9")
-	)
-	(wire
-		(pts
 			(xy 87.63 45.72) (xy 87.63 54.61)
 		)
 		(stroke
@@ -4411,16 +4426,6 @@
 			(type default)
 		)
 		(uuid "3f315639-a7da-4586-91df-2ca17d2e2b71")
-	)
-	(wire
-		(pts
-			(xy 104.14 102.87) (xy 109.22 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3f479cab-4871-4626-aeff-5c1fd62af253")
 	)
 	(wire
 		(pts
@@ -4454,13 +4459,13 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 100.33) (xy 104.14 102.87)
+			(xy 104.14 105.41) (xy 109.22 105.41)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4d8d61fd-ab66-4c55-834a-c73cd9f2505a")
+		(uuid "51b2aa63-481a-49df-a17b-a5cd12fc6eb3")
 	)
 	(wire
 		(pts
@@ -4484,16 +4489,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 97.79) (xy 104.14 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6aed9d65-9163-4aa5-8c55-73e58b482ed3")
-	)
-	(wire
-		(pts
 			(xy 74.93 53.34) (xy 90.17 53.34)
 		)
 		(stroke
@@ -4514,16 +4509,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 92.71) (xy 104.14 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "797b2098-09d2-42be-b231-cdf253264e6b")
-	)
-	(wire
-		(pts
 			(xy 200.66 116.84) (xy 208.28 116.84)
 		)
 		(stroke
@@ -4531,16 +4516,6 @@
 			(type default)
 		)
 		(uuid "7cdcdc6e-dfad-4b51-aa83-be5f3e8f4e34")
-	)
-	(wire
-		(pts
-			(xy 104.14 105.41) (xy 109.22 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7df4419a-db08-4573-a253-21aafa578e50")
 	)
 	(wire
 		(pts
@@ -4554,26 +4529,6 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 102.87) (xy 104.14 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8b08a0bb-f55b-4b08-9a36-7978538a0db6")
-	)
-	(wire
-		(pts
-			(xy 128.27 60.96) (xy 190.5 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "941e6ab9-91c3-41d8-9090-9380c87117e0")
-	)
-	(wire
-		(pts
 			(xy 74.93 60.96) (xy 82.55 60.96)
 		)
 		(stroke
@@ -4581,6 +4536,16 @@
 			(type default)
 		)
 		(uuid "96f312a3-7c56-4a9f-95b4-1a110ed4ea1f")
+	)
+	(wire
+		(pts
+			(xy 104.14 38.1) (xy 118.11 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a28bf0a7-9555-4764-8dca-467ab26e9d24")
 	)
 	(wire
 		(pts
@@ -4614,33 +4579,13 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 38.1) (xy 118.11 38.1)
+			(xy 82.55 38.1) (xy 104.14 38.1)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "b2741bd3-c0d4-4216-888e-fb5ecdf1aec7")
-	)
-	(wire
-		(pts
-			(xy 154.94 78.74) (xy 154.94 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b2c3d4e5-0001-0001-0001-000000000001")
-	)
-	(wire
-		(pts
-			(xy 165.1 78.74) (xy 165.1 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b2c3d4e5-0001-0001-0001-000000000002")
 	)
 	(wire
 		(pts
@@ -4681,16 +4626,6 @@
 			(type default)
 		)
 		(uuid "b3e56e7e-7b27-456f-bbee-bbc700d61fd0")
-	)
-	(wire
-		(pts
-			(xy 104.14 60.96) (xy 104.14 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bc1bc12b-0b31-4266-bfb0-f83ded6f6f9f")
 	)
 	(wire
 		(pts
@@ -4744,16 +4679,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 105.41) (xy 104.14 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dec72f43-c6b6-4e6f-b9b6-68e64d2c61cc")
-	)
-	(wire
-		(pts
 			(xy 81.28 87.63) (xy 72.39 87.63)
 		)
 		(stroke
@@ -4774,33 +4699,33 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 82.55) (xy 104.14 85.09)
+			(xy 104.14 102.87) (xy 109.22 102.87)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e741620e-57d3-42d0-a551-03d68c26d889")
+		(uuid "ed7d6593-6010-44cf-b827-a9f3b4922d2d")
 	)
-	(wire
-		(pts
-			(xy 104.14 80.01) (xy 104.14 82.55)
+	(label "PS2 Mode"
+		(at 114.3 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
 		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f26773a6-9eb0-4483-a27e-9840bb8437d1")
+		(uuid "90f88ec2-2f8f-40d5-a542-bbf6806586fb")
 	)
-	(wire
-		(pts
-			(xy 104.14 87.63) (xy 104.14 90.17)
+	(label "Mouse Type"
+		(at 114.3 105.41 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
 		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fb249c74-a5f5-4744-a6a1-50318ee251b4")
+		(uuid "d5b0b29b-3c4b-4d97-a47b-abe23a2cbc11")
 	)
 	(global_label "TX"
 		(shape input)
@@ -6170,6 +6095,162 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VBUS")
+		(at 104.14 38.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "05693b8b-194e-420a-9e4a-10e53b727394")
+		(property "Reference" "#PWR04"
+			(at 104.14 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 104.14 33.02 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 104.14 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.14 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 104.14 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "22d7467c-e840-4911-86b9-aa6d3dde855c")
+		)
+		(instances
+			(project "ps2-serial-mouse-adapter"
+				(path "/fc1ea10e-0bb6-477e-8c0e-750c9e96adff"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VBUS")
+		(at 165.1 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6f9e785c-a5c5-4d12-b08f-fc04b342a7e8")
+		(property "Reference" "#PWR011"
+			(at 165.1 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 165.1 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 165.1 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 165.1 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "02ed13e2-2409-41b2-b298-b727026429f5")
+		)
+		(instances
+			(project "ps2-serial-mouse-adapter"
+				(path "/fc1ea10e-0bb6-477e-8c0e-750c9e96adff"
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 128.27 68.58 0)
 		(unit 1)
@@ -6468,6 +6549,162 @@
 			(project "ps2-serial-mouse-adapter"
 				(path "/fc1ea10e-0bb6-477e-8c0e-750c9e96adff"
 					(reference "#PWR10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VBUS")
+		(at 104.14 115.57 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ce909ac8-771c-458d-8942-ae0178d6da9a")
+		(property "Reference" "#PWR05"
+			(at 104.14 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 104.14 110.49 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 104.14 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.14 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 104.14 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c3d998aa-5d78-4208-bede-953bd0e86f00")
+		)
+		(instances
+			(project "ps2-serial-mouse-adapter"
+				(path "/fc1ea10e-0bb6-477e-8c0e-750c9e96adff"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VBUS")
+		(at 154.94 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d419c7ae-3c8a-440a-928a-5cca7ea43038")
+		(property "Reference" "#PWR06"
+			(at 154.94 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "VBUS"
+			(at 154.94 73.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 154.94 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 154.94 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VBUS\""
+			(at 154.94 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ec54d206-18da-46af-80c7-13238cc9ecba")
+		)
+		(instances
+			(project "ps2-serial-mouse-adapter"
+				(path "/fc1ea10e-0bb6-477e-8c0e-750c9e96adff"
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)

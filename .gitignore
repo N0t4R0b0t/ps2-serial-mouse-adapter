@@ -1,3 +1,20 @@
-/kicad/*-backups
-/kicad/output/
+# KiCad backups and output
+kicad/*-backups/
+kicad/output/
+
+# KiCad autosave and lock files
+kicad/_autosave-*
+kicad/~*.lck
+
+# KiCad history (local undo history)
+kicad/.history/
+
+# KiCad cache files (auto-regenerated)
+kicad/fp-info-cache
+kicad/*-cache.lib
+
+# KiCad local project preferences (machine-specific)
+kicad/*.kicad_prl
+
+# Reports
 **/report.txt
