@@ -4,60 +4,47 @@
     {
       "label": "Firmware: Compile",
       "type": "shell",
-      "command": "arduino-cli",
-      "args": [
-        "compile",
-        "--fqbn",
-        "${input:chip}",
-        "--warnings",
-        "all",
-        "${workspaceFolder}/firmware/ps2adapter"
-      ],
+      "command": "arduino-cli compile --fqbn ${input:chip} --warnings all ${workspaceFolder}/firmware/ps2adapter && echo '✅ Compile OK' || { echo '❌ Compile FAILED'; exit 1; }",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "problemMatcher": "$gcc",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "showReuseMessage": false
+      },
       "detail": "Compile the PS/2-to-serial mouse adapter firmware for the selected chip."
     },
     {
       "label": "Firmware: Upload",
       "type": "shell",
-      "command": "arduino-cli",
-      "args": [
-        "upload",
-        "--fqbn",
-        "${input:chip}",
-        "--port",
-        "${input:port}",
-        "--verify",
-        "--verbose",
-        "${workspaceFolder}/firmware/ps2adapter"
-      ],
+      "command": "arduino-cli upload --fqbn ${input:chip} --port ${input:port} --verify --verbose ${workspaceFolder}/firmware/ps2adapter && echo '✅ Upload verified OK' || { echo '❌ Upload/verify FAILED'; exit 1; }",
       "group": "build",
       "problemMatcher": [],
-      "detail": "Upload firmware to the board on the selected serial port."
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "showReuseMessage": false
+      },
+      "detail": "Upload firmware to the board on the selected serial port and verify the flash."
     },
     {
       "label": "Firmware: Compile & Upload",
       "type": "shell",
-      "command": "arduino-cli",
-      "args": [
-        "compile",
-        "--fqbn",
-        "${input:chip}",
-        "--upload",
-        "--port",
-        "${input:port}",
-        "--verify",
-        "--verbose",
-        "--warnings",
-        "all",
-        "${workspaceFolder}/firmware/ps2adapter"
-      ],
+      "command": "arduino-cli compile --fqbn ${input:chip} --upload --port ${input:port} --verify --verbose --warnings all ${workspaceFolder}/firmware/ps2adapter && echo '✅ Compile + Upload verified OK' || { echo '❌ Compile/Upload FAILED'; exit 1; }",
       "group": "build",
       "problemMatcher": "$gcc",
-      "detail": "Compile and upload the firmware in one step."
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true,
+        "showReuseMessage": false
+      },
+      "detail": "Compile and upload the firmware in one step, then verify the flash."
     }
   ],
   "inputs": [
