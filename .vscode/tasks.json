@@ -1,0 +1,103 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Firmware: Compile",
+      "type": "shell",
+      "command": "arduino-cli",
+      "args": [
+        "compile",
+        "--fqbn",
+        "${input:chip}",
+        "--warnings",
+        "all",
+        "${workspaceFolder}/firmware/ps2adapter"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$gcc",
+      "detail": "Compile the PS/2-to-serial mouse adapter firmware for the selected chip."
+    },
+    {
+      "label": "Firmware: Upload",
+      "type": "shell",
+      "command": "arduino-cli",
+      "args": [
+        "upload",
+        "--fqbn",
+        "${input:chip}",
+        "--port",
+        "${input:port}",
+        "--verify",
+        "--verbose",
+        "${workspaceFolder}/firmware/ps2adapter"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "Upload firmware to the board on the selected serial port."
+    },
+    {
+      "label": "Firmware: Compile & Upload",
+      "type": "shell",
+      "command": "arduino-cli",
+      "args": [
+        "compile",
+        "--fqbn",
+        "${input:chip}",
+        "--upload",
+        "--port",
+        "${input:port}",
+        "--verify",
+        "--verbose",
+        "--warnings",
+        "all",
+        "${workspaceFolder}/firmware/ps2adapter"
+      ],
+      "group": "build",
+      "problemMatcher": "$gcc",
+      "detail": "Compile and upload the firmware in one step."
+    }
+  ],
+  "inputs": [
+    {
+      "id": "chip",
+      "type": "pickString",
+      "description": "Select the target chip / board (FQBN):",
+      "default": "arduino:avr:nano:cpu=atmega328",
+      "options": [
+        {
+          "label": "Arduino Nano — ATmega328P (new bootloader)",
+          "value": "arduino:avr:nano:cpu=atmega328"
+        },
+        {
+          "label": "Arduino Nano — ATmega328P (old bootloader)",
+          "value": "arduino:avr:nano:cpu=atmega328old"
+        },
+        {
+          "label": "Arduino Pro Mini — ATmega328P 5V/16MHz",
+          "value": "arduino:avr:pro:cpu=16MHzatmega328"
+        },
+        {
+          "label": "Arduino Pro Micro / Leonardo — ATmega32U4 (5V/16MHz)",
+          "value": "arduino:avr:leonardo"
+        },
+        {
+          "label": "Arduino Micro — ATmega32U4",
+          "value": "arduino:avr:micro"
+        },
+        {
+          "label": "Arduino Uno — ATmega328P",
+          "value": "arduino:avr:uno"
+        }
+      ]
+    },
+    {
+      "id": "port",
+      "type": "promptString",
+      "description": "Serial port of the board (e.g. /dev/ttyUSB0 or /dev/ttyACM0):",
+      "default": "/dev/ttyUSB0"
+    }
+  ]
+}
