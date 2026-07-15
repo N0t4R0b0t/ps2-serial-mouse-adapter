@@ -874,6 +874,159 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "ps2-serial-mouse-adapter:Conn_Panel_1x04"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at -5.08 11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "Conn_Panel_1x04"
+				(at -5.08 8.89 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 3.81 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 3.81 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Panel-mount pigtail header: VBUS, RX, TX, GND"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_Panel_1x04_0_1"
+				(rectangle
+					(start -5.08 -7.62)
+					(end 5.08 7.62)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "Conn_Panel_1x04_1_1"
+				(pin power_out line
+					(at 7.62 5.08 180)
+					(length 2.54)
+					(name "VBUS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 7.62 -2.54 180)
+					(length 2.54)
+					(name "RX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "TX"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 0 -10.16 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Connector_Generic:Conn_02x02_Odd_Even"
 			(pin_names
 				(offset 1.016)
@@ -3828,9 +3981,9 @@
 					)
 				)
 				(pin bidirectional line
-					(at 22.86 -33.02 180)
+					(at 22.86 -40.64 180)
 					(length 2.54)
-					(name "VIN"
+					(name "5V"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3838,24 +3991,6 @@
 						)
 					)
 					(number "27"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at 22.86 -35.56 180)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "28"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3873,6 +4008,24 @@
 							)
 						)
 					)
+					(number "28"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 22.86 -35.56 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 					(number "29"
 						(effects
 							(font
@@ -3882,9 +4035,9 @@
 					)
 				)
 				(pin bidirectional line
-					(at 22.86 -40.64 180)
+					(at 22.86 -33.02 180)
 					(length 2.54)
-					(name "5V"
+					(name "VIN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4234,7 +4387,7 @@
 		(uuid "32a6d913-e7f3-4fdb-a00b-fbc75a90801a")
 	)
 	(junction
-		(at 208.28 116.84)
+		(at 204.47 116.84)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4eb14c3d-419c-4fde-97ca-621f48272358")
@@ -4257,6 +4410,18 @@
 		(color 0 0 0 0)
 		(uuid "a9caf7cf-4dd7-46c6-b2d6-8116f8143e52")
 	)
+	(junction
+		(at 196.85 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b6886d01-2665-4c50-a930-eb5f290f65f9")
+	)
+	(junction
+		(at 196.85 101.6)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e1b98d2a-4272-4f53-8ce1-ae6d1954b876")
+	)
 	(no_connect
 		(at 81.28 107.95)
 		(uuid "1105330d-a2b9-4b8e-ad71-89e4490472d8")
@@ -4274,11 +4439,11 @@
 		(uuid "32aa0d97-6695-4f97-bf0f-a40dfa29b5e9")
 	)
 	(no_connect
-		(at 200.66 93.98)
+		(at 196.85 93.98)
 		(uuid "69a95515-53c5-4f68-96f6-61f68e31c8e9")
 	)
 	(no_connect
-		(at 200.66 91.44)
+		(at 196.85 91.44)
 		(uuid "7f5f741a-7bfa-445a-a67f-534499b1c094")
 	)
 	(no_connect
@@ -4286,7 +4451,7 @@
 		(uuid "811f17f1-0458-4cbf-8c6b-fd24443a768e")
 	)
 	(no_connect
-		(at 200.66 109.22)
+		(at 196.85 109.22)
 		(uuid "96488619-e913-40da-8da3-32ead852583a")
 	)
 	(no_connect
@@ -4366,16 +4531,12 @@
 		(uuid "d80da302-f7b4-49fe-ab38-dca8c8fdeb95")
 	)
 	(no_connect
-		(at 200.66 104.14)
+		(at 196.85 104.14)
 		(uuid "de863da3-e189-4a9b-92ab-89270ce9365b")
 	)
 	(no_connect
-		(at 200.66 106.68)
+		(at 196.85 106.68)
 		(uuid "e962411a-ffc9-477f-b3ff-f30740ac7465")
-	)
-	(no_connect
-		(at 82.55 48.26)
-		(uuid "f0978dc8-758a-4378-afe2-08fa3b71bcfa")
 	)
 	(wire
 		(pts
@@ -4389,13 +4550,23 @@
 	)
 	(wire
 		(pts
-			(xy 72.39 53.34) (xy 74.93 53.34)
+			(xy 196.85 96.52) (xy 175.26 96.52)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "200f4132-b397-4ea7-b4b3-866ee1e7c310")
+		(uuid "26aea7ee-703c-4393-891e-bf23c0860646")
+	)
+	(wire
+		(pts
+			(xy 196.85 101.6) (xy 175.26 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28399a77-4d01-4f2f-9d73-32c5ee68492e")
 	)
 	(wire
 		(pts
@@ -4509,7 +4680,17 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 116.84) (xy 208.28 116.84)
+			(xy 196.85 99.06) (xy 175.26 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78359ab5-4475-4efc-bd38-a763889e1b5c")
+	)
+	(wire
+		(pts
+			(xy 196.85 116.84) (xy 204.47 116.84)
 		)
 		(stroke
 			(width 0)
@@ -4549,7 +4730,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 111.76) (xy 200.66 116.84)
+			(xy 196.85 111.76) (xy 196.85 116.84)
 		)
 		(stroke
 			(width 0)
@@ -4589,17 +4770,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 96.52) (xy 200.66 96.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b2c3d4e5-0001-0001-0001-000000000003")
-	)
-	(wire
-		(pts
-			(xy 175.26 99.06) (xy 200.66 99.06)
+			(xy 199.39 99.06) (xy 196.85 99.06)
 		)
 		(stroke
 			(width 0)
@@ -4609,7 +4780,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 101.6) (xy 200.66 101.6)
+			(xy 200.66 101.6) (xy 196.85 101.6)
 		)
 		(stroke
 			(width 0)
@@ -4626,6 +4797,16 @@
 			(type default)
 		)
 		(uuid "b3e56e7e-7b27-456f-bbee-bbc700d61fd0")
+	)
+	(wire
+		(pts
+			(xy 110.49 110.49) (xy 104.14 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6c226fd-62eb-4f76-9f80-ef630f27bb66")
 	)
 	(wire
 		(pts
@@ -4969,7 +5150,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 208.28 116.84 0)
+		(at 204.47 116.84 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4979,7 +5160,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005fb93712")
 		(property "Reference" "#PWR07"
-			(at 208.28 123.19 0)
+			(at 204.47 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4990,7 +5171,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 208.28 120.65 0)
+			(at 204.47 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5000,7 +5181,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 208.28 116.84 0)
+			(at 204.47 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5011,7 +5192,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 208.28 116.84 0)
+			(at 204.47 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5022,7 +5203,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 208.28 116.84 0)
+			(at 204.47 116.84 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5227,7 +5408,7 @@
 			)
 		)
 		(property "Value" "MAX3232_HW027"
-			(at 160.02 73.66 0)
+			(at 160.02 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5316,7 +5497,7 @@
 	)
 	(symbol
 		(lib_id "Connector:DB9_Female_MountingHoles")
-		(at 208.28 101.6 0)
+		(at 204.47 101.6 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5326,7 +5507,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005fba566f")
 		(property "Reference" "RS232"
-			(at 212.852 100.4316 0)
+			(at 209.042 100.4316 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5337,7 +5518,7 @@
 			)
 		)
 		(property "Value" "DB9_Female"
-			(at 212.852 102.743 0)
+			(at 209.042 102.743 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5348,7 +5529,7 @@
 			)
 		)
 		(property "Footprint" "Connector_Dsub:DSUB-9_Female_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
-			(at 208.28 101.6 0)
+			(at 204.47 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5359,7 +5540,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 208.28 101.6 0)
+			(at 204.47 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5370,7 +5551,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 208.28 101.6 0)
+			(at 204.47 101.6 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5755,7 +5936,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:USB_B_Mini")
+		(lib_id "ps2-serial-mouse-adapter:Conn_Panel_1x04")
 		(at 74.93 43.18 0)
 		(unit 1)
 		(body_style 1)
@@ -5775,7 +5956,7 @@
 				)
 			)
 		)
-		(property "Value" "USB_B_Mini"
+		(property "Value" "Conn_Panel_1x04"
 			(at 76.3778 33.6296 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5785,7 +5966,7 @@
 				)
 			)
 		)
-		(property "Footprint" "ps2-serial-mouse-adapter:USB_Mini-B-Jing_Extension_LSCS_C46398"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
 			(at 78.74 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -5827,13 +6008,7 @@
 			(uuid "580e9207-93ad-4c07-a1fc-da09e8e54e48")
 		)
 		(pin "4"
-			(uuid "52ffb958-0623-48c6-b17b-0b6d09ca5a3d")
-		)
-		(pin "5"
 			(uuid "aa4920f1-3f9c-4a20-947e-5eca15833e99")
-		)
-		(pin "6"
-			(uuid "42fcbf17-b0fb-4f92-91b2-45c386a09e88")
 		)
 		(instances
 			(project "ps2-serial-mouse-adapter"
@@ -6480,7 +6655,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 104.14 110.49 0)
+		(at 110.49 110.49 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6490,7 +6665,7 @@
 		(dnp no)
 		(uuid "c1c2d3e4-0004-0001-0001-000000000001")
 		(property "Reference" "#PWR10"
-			(at 104.14 116.84 0)
+			(at 110.49 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6501,7 +6676,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 107.95 111.76 0)
+			(at 114.3 111.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6511,7 +6686,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 104.14 110.49 0)
+			(at 110.49 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6522,7 +6697,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 104.14 110.49 0)
+			(at 110.49 110.49 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6533,7 +6708,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 104.14 110.49 0)
+			(at 110.49 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6564,7 +6739,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "ce909ac8-771c-458d-8942-ae0178d6da9a")
 		(property "Reference" "#PWR05"
 			(at 104.14 119.38 0)
@@ -6578,7 +6752,7 @@
 			)
 		)
 		(property "Value" "VBUS"
-			(at 104.14 110.49 0)
+			(at 107.442 115.316 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
