@@ -1,6 +1,5 @@
-# KiCad backups and output
+# KiCad backups
 kicad/*-backups/
-kicad/output/
 
 # KiCad autosave and lock files
 kicad/_autosave-*
