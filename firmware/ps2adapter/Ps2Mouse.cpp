@@ -9,6 +9,8 @@
 #include "ProMicro.h"
 #include "Ps2Mouse.h"
 
+extern bool debugMode;
+
 namespace {
 
 struct Status {
@@ -85,9 +87,9 @@ struct Ps2Mouse::Impl {
     long stime = timeout>0?millis():0;
     while (READCLOCK != 0) {
       if(timeout>0 &&millis()-stime>timeout ){
-        #if DEBUG>0
-            Serial.println("Sendbit: Timeout waiting for clock to go low");
-        #endif
+        if (debugMode) {
+          Serial.println("Sendbit: Timeout waiting for clock to go low");
+        }
         return;
       }
     }
@@ -113,9 +115,9 @@ struct Ps2Mouse::Impl {
     long stime = timeout>0?millis():0;
     while ( READCLOCK != 0) {
       if(timeout>0 &&millis()-stime>timeout ){
-        #if DEBUG>0
-            Serial.println("RCVbit: Timeout waiting for clock to go low");
-        #endif
+        if (debugMode) {
+          Serial.println("RCVbit: Timeout waiting for clock to go low");
+        }
         return -1;
       }
     }
@@ -208,18 +210,25 @@ struct Ps2Mouse::Impl {
     value = 0;
     unsigned char parity = 0;
     for (int i = 0; i < 8; i++) {
-      byte nextBit = recvBit(-1);
+      int nextBit = recvBit();
+      if (nextBit < 0) {
+        return -3;
+      }
       value |= nextBit << i;
       parity += nextBit;
     }
      // Receive and check parity bit
-    parity += recvBit(-1);
+    int parityBit = recvBit();
+    if (parityBit < 0) {
+      return -3;
+    }
+    parity += parityBit;
     if(parity% 2 == 0){
-      #if DEBUG>0
+      if (debugMode) {
         Serial.println("Parity error!!!");
-      #endif
+      }
       return -2;
-    } 
+    }
     // Receive stop bit
     recvBit();
     
@@ -255,19 +264,20 @@ struct Ps2Mouse::Impl {
   }
 
   bool sendByteWithAck(byte value,bool slow) const {
-    while (true) {
+    const int maxResends = 5;
+    for (int attempt = 0; attempt < maxResends; attempt++) {
       if (slow?sendByteSLOW(value):sendByte(value)) {
         byte response;
-        if (recvByte(response)) {
-#if DEBUG>1
+        if (recvByte(response) > 0) {
+          if (debugMode) {
             Serial.print(F("Reponse:"));
             Serial.println(response,HEX);
-#endif
+          }
           if (response == static_cast<byte>(Response::resend)) {
-#if DEBUG>1
-            Serial.print(F("Resend Needed:"));
-            Serial.println(response,HEX);
-#endif
+            if (debugMode) {
+              Serial.print(F("Resend Needed:"));
+              Serial.println(response,HEX);
+            }
             continue;
           }
           return response == static_cast<byte>(Response::ack);
@@ -275,6 +285,7 @@ struct Ps2Mouse::Impl {
       }
       return false;
     }
+    return false;
   }
 
   bool sendCommand(Command command,bool slow) const {
@@ -312,56 +323,64 @@ Ps2Mouse::Ps2Mouse(byte clockPin, byte dataPin, bool setStream)
 bool Ps2Mouse::reset(bool stream) {
   byte reply;
   Impl impl{*this};
-  
-  if (!impl.sendCommand(Command::reset,true)) {
-      #if DEBUG>0
+
+  const int maxResetAttempts = 5;
+  int resetAttempts = 0;
+  while (!impl.sendCommand(Command::reset,true)) {
+      if (debugMode) {
         Serial.println("Error running reset cmd");
-      #endif
-      return reset(stream);
+      }
+      if (++resetAttempts >= maxResetAttempts) {
+        if (debugMode) {
+          Serial.println("Reset cmd failed too many times, giving up");
+        }
+        return false;
+      }
   }
-  #if DEBUG>0
-        Serial.println("Reset cmd executed");
-  #endif
+  if (debugMode) {
+    Serial.println("Reset cmd executed");
+  }
   
-  if (!impl.recvByte(reply) || reply != byte(Response::selfTestPassed)) {
-      #if DEBUG>0
+  bool selfTestOk = impl.recvByte(reply) && reply == byte(Response::selfTestPassed);
+  byte selfTestReply = reply;
+
+  if (!selfTestOk) {
+      if (debugMode) {
         Serial.println("Failed self test");
-      #endif
+      }
       return false;
-  }else{
-  #if DEBUG>0
-        Serial.println("Passed selftest");
-  #endif
   }
-#if DEBUG>0
-  Serial.print(F("1st Reply: "));
-  Serial.println(reply,HEX);
-#endif
-  if (!impl.recvByte(reply) || reply != byte(Response::isMouse)) {
-      #if DEBUG>0
-        Serial.println("Device does not identify as mouse");
-      #endif
-  }else{
-      #if DEBUG>0
-            Serial.println("Device identifies as mouse");
-      #endif
+
+  // Read the ID byte immediately, back-to-back with the self-test byte above —
+  // any Serial output between the two reads can delay us long enough to miss
+  // the ID byte's start bit, desyncing the whole read (looks like a corrupted
+  // byte + parity error, but is really a framing slip). Print everything after.
+  bool isMouseOk = impl.recvByte(reply) && reply == byte(Response::isMouse);
+
+  if (debugMode) {
+    Serial.println("Passed selftest");
+    Serial.print(F("1st Reply: "));
+    Serial.println(selfTestReply,HEX);
+    if (isMouseOk) {
+      Serial.println("Device identifies as mouse");
+    } else {
+      Serial.println("Device does not identify as mouse");
+    }
+    Serial.print(F("2nd Reply: "));
+    Serial.println(reply,HEX);
+    Serial.println(F("Attempting to enable reporting."));
   }
-#if DEBUG>0
-  Serial.print(F("2nd Reply: "));
-  Serial.println(reply,HEX);
-  Serial.println(F("Attempting to enable reporting."));
-#endif
   if (stream){
-#if DEBUG>0
-    Serial.println(F("Streaming Enabled"));
-#endif
-    return enableStreaming() && impl.sendCommand(Command::enableDataReporting,true);    
+    if (debugMode) {
+      Serial.println(F("Streaming Enabled"));
+    }
+    return enableStreaming() && impl.sendCommand(Command::enableDataReporting,true);
   }
   else{
-#if DEBUG>0
-    Serial.println(F("Streaming Disabled"));
-#endif
-    return disableStreaming() && impl.sendCommand(Command::enableDataReporting);    
+    if (debugMode) {
+      Serial.println(F("Streaming Disabled"));
+    }
+    return disableStreaming() && impl.sendCommand(Command::enableDataReporting);
   }
 
 }
@@ -442,16 +461,16 @@ int Ps2Mouse::readData(Data& data) const {
   }
 
   if(!packet.na){
-    #if DEBUG>0
+    if (debugMode) {
       Serial.println("Error on first packet!");
-    #endif
+    }
     return 3;
   }
 
   if(packet.xOverflow || packet.yOverflow){
-    #if DEBUG>0
+    if (debugMode) {
       Serial.println("Movement Overflow!");
-    #endif
+    }
     return 4 ;
   }
 

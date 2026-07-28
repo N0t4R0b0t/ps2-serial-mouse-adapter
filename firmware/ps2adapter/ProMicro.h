@@ -11,23 +11,22 @@
 /****************************************************
  * The following defines assume default pinout
  * of Arduino ProMicro or similiar:
- * 
+ *
  * PS2_CLOCK = 2; //PD2 - Port D, bit 2
- * PS2_DATA  = 17;//PC3 - Port C, bit 3
- * 
+ * PS2_DATA  = 4; //PD4 - Port D, bit 4
+ *
  * RS232_RTS = 3; //PD3 - Port D, bit 3
- * RS232_TX  = 4; //PD4 - Port D, bit 5
- * 
- * 
+ *
+ *
  * The following defines Pin and Port addressing to
  * more quickly set individual pins to their desired
  * states.
  *PS/2 data pin operations***Bit:76543210************/
-#define SETDATAHIGH   (PORTC |=0b00001000)      //0x08
-#define SETDATALOW    (PORTC &=0b11110111)      //0xF7
-#define SETDATAIN     (DDRC  &=0b11110111)      //0xF7
-#define SETDATAOUT    (DDRC  |=0b00001000)      //0x08
-#define READDATA      ((PINC &=0b00001000)>>3)  //0x08
+#define SETDATAHIGH   (PORTD |=0b00010000)      //0x10
+#define SETDATALOW    (PORTD &=0b11101111)      //0xEF
+#define SETDATAIN     (DDRD  &=0b11101111)      //0xEF
+#define SETDATAOUT    (DDRD  |=0b00010000)      //0x10
+#define READDATA      ((PIND &=0b00010000)>>4)  //0x10
 /*PS/2 clock pin operations**Bit:76543210************/
 #define SETCLOCKHIGH  (PORTD |=0b00000100)      //0x04
 #define SETCLOCKLOW   (PORTD &=0b11111011)      //0xFB

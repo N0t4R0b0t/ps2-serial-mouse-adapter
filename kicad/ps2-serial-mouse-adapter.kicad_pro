@@ -551,6 +551,10 @@
       {
         "netclass": "Power",
         "pattern": "GND"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "RTS"
       }
     ]
   },
@@ -700,7 +704,7 @@
         "uuid": "fc1ea10e-0bb6-477e-8c0e-750c9e96adff"
       }
     ],
-    "used_designators": "#PWR4-6,#PWR11",
+    "used_designators": "#PWR4-6,#PWR11-12",
     "variants": []
   },
   "sheets": [

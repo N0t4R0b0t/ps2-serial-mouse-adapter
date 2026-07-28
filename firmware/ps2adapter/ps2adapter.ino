@@ -9,12 +9,29 @@
 #include "Ps2Mouse.h"
 
 static const int PS2_CLOCK = 2; //PD2 - Port D, bit 2
-static const int PS2_DATA  = 17;//PC3 - Port C, bit 3
+static const int PS2_DATA  = 4; //PD4 - Port D, bit 4
 static const int RS232_RTS = 3; //PD3 - Port D, bit 3
-static const int RS232_TX  = 4; //PD4 - Port D, bit 5
-static const int JP12 = 11;
-static const int JP34 = 12;
+// JP1 pins 1-2 (A7) and 3-4 (A6). A6/A7 are analog-input-only on the
+// ATmega328P (no DDR/PORT bit, no internal pull-up) so they need an
+// external pull-up to VBUS and must be read via analogRead(), not
+// pinMode()/digitalRead().
+static const int JP12 = A7;
+static const int JP34 = A6;
+// JP1 pins 5-6: debug-mode select, extended onto the same jumper block as
+// JP12/JP34. Analog-read like the others (see jumperInstalled()).
+static const int JP56 = A5;
+// Mouse-activity indicator LED, driven directly by firmware (not the
+// hardware TX-monitor LED on the MAX3232's real RS232 output).
+static const int ACT_LED_PIN = A1;
 static const int LED = 13;
+static const unsigned long ACT_LED_BLINK_MS = 15;
+
+static bool jumperInstalled(int pin) {
+  return analogRead(pin) < 512;
+}
+
+bool debugMode = false;
+unsigned long actLedOffTime = 0;
 
 Ps2Mouse *mouse;
 int errorCount = 0;
@@ -42,41 +59,42 @@ static void sendToSerial(const Ps2Mouse::Data& data) {
 }
 
 static void initSerialPort() {
-  #if DEBUG<=0
+  if (!debugMode) {
     Serial.begin(1200,SERIAL_7N1);
-     byte msg[2];
-      msg[0]='M';
-      msg[1]='3';
-      Serial.write(msg,threeButtons?2:1);
-  #else
-  //In debug mode you dont get mouse movements writen to serial
+    byte msg[2];
+    msg[0]='M';
+    msg[1]='3';
+    Serial.write(msg,threeButtons?2:1);
+  } else {
+    //In debug mode you dont get mouse movements writen to serial
     Serial.begin(115200);
     Serial.println("Starting serial port");
-  #endif
+  }
+  pinMode(RS232_RTS, INPUT_PULLUP);
   void (*resetHack)() = 0;
   attachInterrupt(digitalPinToInterrupt(RS232_RTS), resetHack, FALLING);
 }
 
 static void initPs2Port() {
   errorCount = 0;
-  stream = !digitalRead(JP34);
-#if DEBUG>0
-  Serial.println("Reseting PS/2 mouse");
-#endif
+  stream = jumperInstalled(JP34);
+  if (debugMode) {
+    Serial.println("Reseting PS/2 mouse");
+  }
   //TODO: Cleanup
   //Identify streaming mode or not.
   mouse->reset(stream);
   mouse->setResolution(2);
   Ps2Mouse::Settings settings;
   if (mouse->getSettings(settings)) {
- #if DEBUG>0
-    Serial.print("scaling = ");
-    Serial.println(settings.scaling);
-    Serial.print("resolution = ");
-    Serial.println(settings.resolution);
-    Serial.print("samplingRate = ");
-    Serial.println(settings.sampleRate);
-#endif
+    if (debugMode) {
+      Serial.print("scaling = ");
+      Serial.println(settings.scaling);
+      Serial.print("resolution = ");
+      Serial.println(settings.resolution);
+      Serial.print("samplingRate = ");
+      Serial.println(settings.sampleRate);
+    }
     pullRate = settings.sampleRate;
   }
     mouse->clearData(data);
@@ -86,19 +104,21 @@ void setup() {
   // PS/2 Data input must be initialized shortly after power on,
   // or the mouse will not initialize
   pinMode(PS2_DATA, INPUT_PULLUP);
-  pinMode(RS232_TX, OUTPUT);
-  pinMode(JP12, INPUT_PULLUP);
-  pinMode(JP34, INPUT_PULLUP);
   pinMode(LED, OUTPUT);
-  threeButtons = digitalRead(JP12);
+  pinMode(ACT_LED_PIN, OUTPUT);
+  digitalWrite(ACT_LED_PIN, LOW);
+  threeButtons = !jumperInstalled(JP12);
+  // DEBUG (ProMicro.h) still force-enables debug mode at compile time;
+  // the jumper lets it be toggled at runtime without reflashing.
+  debugMode = (DEBUG > 0) || jumperInstalled(JP56);
   digitalWrite(LED, HIGH);
 
   initSerialPort();
-  mouse = new Ps2Mouse(PS2_CLOCK, PS2_DATA, !digitalRead(JP34));
+  mouse = new Ps2Mouse(PS2_CLOCK, PS2_DATA, jumperInstalled(JP34));
   initPs2Port();
-#if DEBUG>0
-  Serial.println("Setup done!");
-#endif
+  if (debugMode) {
+    Serial.println("Setup done!");
+  }
   digitalWrite(LED, LOW);
   
 }
@@ -106,15 +126,24 @@ void setup() {
 
 
 void loop() {
+  if (actLedOffTime && millis() >= actLedOffTime) {
+    digitalWrite(ACT_LED_PIN, LOW);
+    actLedOffTime = 0;
+  }
+
   Ps2Mouse::Data newData;
    if(!stream)
         delayMicroseconds(1000000/pullRate);
   int status = mouse->readData(newData);
   if (status==0) {
     mouse->accumulate(newData,data);
-    if (Serial.availableForWrite() >= SERIAL_TX_BUFFER_SIZE-1){
-      sendToSerial(data);
-      #if DEBUG>1
+    digitalWrite(ACT_LED_PIN, HIGH);
+    actLedOffTime = millis() + ACT_LED_BLINK_MS;
+    if (Serial.availableForWrite() >= 4){
+      if (!debugMode) {
+        sendToSerial(data);
+      }
+      if (debugMode) {
           Serial.print(data.xMovement);
           Serial.print(",");
           Serial.print(data.yMovement);
@@ -123,15 +152,15 @@ void loop() {
           Serial.print(",");
           Serial.print(data.middleButton,HEX);
           Serial.print(",");
-          Serial.println(data.rightButton,HEX);     
-    #endif
+          Serial.println(data.rightButton,HEX);
+      }
       mouse->clearData(data);
     }
   }else if(status>1){
     errorCount++;
-    #if DEBUG>0
-     Serial.println("Packet error");
-    #endif
+    if (debugMode) {
+      Serial.println("Packet error");
+    }
     if(errorCount>RESETON){
       initPs2Port();
     }
